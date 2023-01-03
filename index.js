@@ -1,10 +1,8 @@
-var canvas = document.getElementById("gameCanvas");
-var cornerSquare = document.getElementById("square-corner");
-var cornerSquareRotated = document.getElementById("square-corner-rotated");
-var groundSquare = document.getElementById("square-ground");
-var outputTileSet = document.getElementById("json");
-var getOutput = document.getElementById("getOutput");
-var ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas");
+const palette = document.getElementById("palette");
+const outputTileSet = document.getElementById("json");
+const getOutput = document.getElementById("getOutput");
+const ctx = canvas.getContext("2d");
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 // Set tile size and number of rows and columns
@@ -21,9 +19,18 @@ for (var row = 0; row < numRows; row++) {
         list[row][col] = 0;
     }
 }
+images.map((imageSrc, i) => {
+    const image = document.createElement("img");
+    console.log(image);
+
+    image.src = `${imageSrc}`;
+    image.style.padding = "10px";
+    image.addEventListener("click", () => {
+        indexvalue = i;
+    });
+    palette.appendChild(image);
+});
 console.log(list);
-const groundImage = new Image();
-groundImage.src = "../ground.png";
 
 for (var row = 0; row < list.length; row++) {
     for (var col = 0; col < list[0].length; col++) {
@@ -44,34 +51,14 @@ for (var row = 0; row < list.length; row++) {
     }
 }
 
-groundSquare.addEventListener("click", () => {
-    indexvalue = 1;
-
-    groundImage.src = "./ground.png";
-});
-cornerSquare.addEventListener("click", () => {
-    indexvalue = 2;
-    groundImage.src = "./corner.png";
-});
-cornerSquareRotated.addEventListener("click", () => {
-    indexvalue = 3;
-    groundImage.src = "./corner.png";
-});
-groundImage.addEventListener("load", () => {
-    canvas.addEventListener("mousedown", function (event) {
-        console.log("mousedown");
-        var x = Math.floor(event.offsetX / tileSize);
-        var y = Math.floor(event.offsetY / tileSize);
-        list[y][x] = indexvalue;
-
-        ctx.drawImage(
-            groundImage,
-            x * tileSize,
-            y * tileSize,
-            tileSize,
-            tileSize
-        );
-    });
+canvas.addEventListener("mousedown", function (event) {
+    console.log("mousedown");
+    var x = Math.floor(event.offsetX / tileSize);
+    var y = Math.floor(event.offsetY / tileSize);
+    list[y][x] = indexvalue;
+    const paletImage = new Image();
+    paletImage.src = images[indexvalue];
+    ctx.drawImage(paletImage, x * tileSize, y * tileSize, tileSize, tileSize);
 });
 
 getOutput.addEventListener("click", () => {
