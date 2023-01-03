@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <img src="./ground.png" id="square-ground" />
+        <img src="./corner.png" id="square-corner" />
+        <img
+            src="./corner.png"
+            id="square-corner-rotated"
+            style="width: 32px; height: 32px; transform: rotateY(180deg)"
+        />
+        <canvas tabindex="0" id="gameCanvas" width="1024" height="576"></canvas>
+        <button id="getOutput">getTheOutput</button>
+        <div style="width: 300px" id="json">json</div>
+        <script src="index.js"></script>
+    </body>
+</html>
