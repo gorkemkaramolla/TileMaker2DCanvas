@@ -17,4 +17,7 @@ const images = [
     `trap-single.png`,
     "trap-double.png",
     "sharp-trap.png",
+    "ground-test.png",
+    "ground-test2.png",
+    "GENIS.png",
 ];

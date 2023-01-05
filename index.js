@@ -2,6 +2,7 @@ const canvas = document.getElementById("gameCanvas");
 const palette = document.getElementById("palette");
 const outputTileSet = document.getElementById("json");
 const getOutput = document.getElementById("getOutput");
+
 const ctx = canvas.getContext("2d");
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -9,6 +10,8 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 var tileSize = 32;
 var numRows = 18;
 var numCols = 32;
+canvas.width = 1024;
+canvas.height = 576;
 var list = [];
 let indexvalue = 0;
 const undoStack = [];
@@ -16,7 +19,7 @@ const undoStack = [];
 for (var row = 0; row < numRows; row++) {
     list[row] = [];
     for (var col = 0; col < numCols; col++) {
-        list[row][col] = 0;
+        list[row][col] = -1;
     }
 }
 images.map((imageSrc, i) => {
@@ -33,8 +36,9 @@ images.map((imageSrc, i) => {
 console.log(list);
 
 for (var row = 0; row < list.length; row++) {
+    console.log(row);
     for (var col = 0; col < list[0].length; col++) {
-        if (list[row][col] == 0) {
+        if (list[row][col] == -1) {
             // Draw empty tile
 
             ctx.fillStyle = "white";
@@ -58,7 +62,13 @@ canvas.addEventListener("mousedown", function (event) {
     list[y][x] = indexvalue;
     const paletImage = new Image();
     paletImage.src = images[indexvalue];
-    ctx.drawImage(paletImage, x * tileSize, y * tileSize, tileSize, tileSize);
+    ctx.drawImage(
+        paletImage,
+        x * tileSize,
+        y * tileSize,
+        paletImage.width,
+        paletImage.height
+    );
 });
 
 getOutput.addEventListener("click", () => {
