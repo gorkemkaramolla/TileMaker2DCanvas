@@ -5,14 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="index.css" />
     </head>
     <body>
-        <div id="palette"></div>
+        <div class="container">
+            <h2 class="header">TILE EDITOR</h2>
 
-        <canvas tabindex="0" id="gameCanvas"></canvas>
-        <button id="getOutput">getTheOutput</button>
-        <div style="width: 300px" id="json">json</div>
-        <script src="ImageArray.js"></script>
-        <script src="index.js"></script>
+            <div id="palette"></div>
+            <canvas tabindex="0" id="gameCanvas"></canvas>
+
+            <button id="getOutput">Convert to Js</button>
+            <div id="json">json</div>
+            <script src="ImageArray.js"></script>
+            <script src="index.js"></script>
+        </div>
     </body>
 </html>

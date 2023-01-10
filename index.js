@@ -9,9 +9,9 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 // Set tile size and number of rows and columns
 var tileSize = 32;
 var numRows = 18;
-var numCols = 32;
-canvas.width = 1024;
-canvas.height = 576;
+var numCols = 128;
+canvas.width = numCols * tileSize;
+canvas.height = numRows * tileSize;
 var list = [];
 let indexvalue = 0;
 const undoStack = [];
